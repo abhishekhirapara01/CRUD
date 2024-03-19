@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit</title>
+  <link rel="stylesheet" href="{% static 'style.css' %}"/>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+  <form method="POST" class="post-form" action = '/update/{{Movie.Mid}}'>
+    {% csrf_token %}
+    <div class="container">
+      <br>
+      <h2>Movie Information: </h2><br>
+      <div class="from-group row">
+        <label class="col-sm-1 col-form-label"></label>
+        <div class="col-sm-4">
+          <h3>Update Details:</h3>
+        </div>
+      </div>
+
+      <div class="from-group row">
+        <label class="col-sm-2 col-form-label">Movie Id:</label>
+        <div class="col-sm-4">
+          <input type="text" name="Mid" id="id_Mid" required maxlength="20" value="{{ Movie.Eid }}"/>
+        </div>
+      </div>
+
+      <div class="from-group row">
+        <label class="col-sm-2 col-form-label">Movie Name:</label>
+        <div class="col-sm-4">
+          <input type="text" name="Mname" id="id_Mname" required maxlength="100" value="{{ employee.Mname }}"/>
+        </div>
+      </div>
+
+      <div class="from-group row">
+        <label class="col-sm-2 col-form-label">Movie Director:</label>
+        <div class="col-sm-4">
+          <input type="text" name="Mdirector" id="id_Mdirector" required maxlength="254" value="{{ Movie.Mdirector }}"/>
+        </div>
+      </div>
+
+      <div class="from-group row">
+        <label class="col-sm-2 col-form-label">Movie Released Date:</label>
+        <div class="col-sm-4">
+          <input type="date" name="Mreleased_date" id="id_Mreleased_date" required maxlength="20" value="{{ Movie.Mreleased_date }}"/>
+
+        </div>
+      </div>
+
+      <div class="form-group row">  
+        <label class="col-sm-3 col-form-label"></label>  
+        <div class="col-sm-4">  
+          <button type="submit" class="btn btn-success">Update</button>  
+        </div>  
+      </div>
+
+    </div>
+  </form>
+</body>
+</html>

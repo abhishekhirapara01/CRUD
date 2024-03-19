@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Show</title>
+  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+  <table class= "table table-striped table-bordered table-sm">
+    <thead class = "thead-dark">
+      <tr>
+        <th>Event Id</th>
+        <th>Event Name</th>
+        <th>Event Location</th>
+        <th>Event Ticket Price</th>
+        <th>Event Contact</th>
+        <th>Actions</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      {% if not events %}
+      <tr align="center">
+        <td colspan="6"> No Record Found!!!   </td>
+      </tr> 
+      {% else %}
+        {% for event in events %}
+          <tr>
+            <td>{{event.Eid}}</td>
+            <td>{{event.Ename}}</td>
+            <td>{{event.Elocation}}</td>
+            <td>{{event.Eprice}}</td>
+            <td>{{event.Econtact}}</td>
+            <td>
+              <a href="/edit/{{ event.Eid }}" class="btn btn-primary"><span class = "glyphicon glyphicon-pencil">Edit</span></a>
+              <a href="/delete/{{ event.Eid }}" class="btn btn-danger">Delete</a>
+            </td>
+          </tr>
+        {% endfor %}  
+      {% endif %}
+    </tbody>
+  </table>
+  <br>
+  <br>
+  <center><a href="/event" class="btn btn-primary">Add New Record</a></center>
+</body>
+</html>

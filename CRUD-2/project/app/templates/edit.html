@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit</title>
+  <link rel="stylesheet" href="{% static 'style.css' %}"/>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+  <form method="POST" class="post-form" action = '/update/{{student.Sroll_num}}'>
+    {% csrf_token %}
+    <div class="container">
+      <br>
+      <h2>Student Information: </h2><br>
+      <div class="from-group row">
+        <label class="col-sm-1 col-form-label"></label>
+        <div class="col-sm-4">
+          <h3>Update Details:</h3>
+        </div>
+      </div>
+
+      <div class="from-group row">
+        <label class="col-sm-2 col-form-label">Student Name:</label>
+        <div class="col-sm-4">
+          <input type="text" name="Sname" id="id_Sname" required maxlength="20" value="{{ student.Sname }}"/>
+        </div>
+      </div>
+
+      <div class="from-group row">
+        <label class="col-sm-2 col-form-label">Student Roll_num:</label>
+        <div class="col-sm-4">
+          <input type="text" name="Sroll_num" id="id_Sroll_num" required maxlength="100" value="{{ student.Sroll_num }}"/>
+        </div>
+      </div>
+
+      <div class="from-group row">
+        <label class="col-sm-2 col-form-label">Student Course:</label>
+        <div class="col-sm-4">
+          <input type="text" name="Scourse" id="id_Scourse" required maxlength="254" value="{{ student.Scourse }}"/>
+        </div>
+      </div>
+
+      <div class="from-group row">
+        <label class="col-sm-2 col-form-label">Student Standard:</label>
+        <div class="col-sm-4">
+          <input type="text" name="Sstandard" id="id_ESstandard" required maxlength="20" value="{{ student.Sstandard }}"/>
+
+        </div>
+      </div>
+
+      <div class="form-group row">  
+        <label class="col-sm-3 col-form-label"></label>  
+        <div class="col-sm-4">  
+          <button type="submit" class="btn btn-success">Update</button>  
+        </div>  
+      </div>
+
+    </div>
+  </form>
+</body>
+</html>

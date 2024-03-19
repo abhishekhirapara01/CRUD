@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Show</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+  <table class= "table table-striped table-bordered table-sm">
+    <thead class = "thead-dark">
+      <tr>
+        <th>Student Name</th>
+        <th>Student rollnum</th>
+        <th>Student Course</th>
+        <th>Student standard</th>
+        <th>Actions</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      {% if not students %}
+        <tr align="center">
+          <td colspan="5"> No Record Found!!!   </td>
+        </tr> 
+      {% else %}
+        {% for student in students %}
+          <tr>
+            <td>{{student.Sname}}</td>
+            <td>{{student.Sroll_num}}</td>
+            <td>{{student.Scourse}}</td>
+            <td>{{student.Sstandard}}</td>
+            <td>
+              <a href="/edit/{{ student.Sroll_num }}" class="btn btn-primary"><span class = "glyphicon glyphicon-pencil">Edit</span></a>
+              <a href="/delete/{{ student.Sroll_num }}" class="btn btn-danger">Delete</a>
+            </td>
+          </tr>
+        {% endfor %}  
+      {% endif %}
+    </tbody>
+  </table>
+  <br>
+  <br>
+  <center><a href="/stu" class="btn btn-primary">Add New Record</a></center>
+</body>
+</html>

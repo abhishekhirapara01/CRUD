@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Show</title>
+  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+  <table class= "table table-striped table-bordered table-sm">
+    <thead class = "thead-dark">
+      <tr>
+        <th>Book Id</th>
+        <th>Book Title</th>
+        <th>Book Author</th>
+        <th>Book Contact</th>
+        <th>Book Price</th>
+        <th>Book Release Date</th>
+        <th>Actions</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      {% if not books %}
+        <tr align="center">
+          <td colspan="7"> No Record Found!!!   </td>
+        </tr> 
+      {% else %}
+        {% for book in books %}
+          <tr>
+            <td>{{book.Bid}}</td>
+            <td>{{book.Bname}}</td>
+            <td>{{book.Bauthor}}</td>
+            <td>{{book.Bcontact}}</td>
+            <td>{{book.Bprice}}</td>
+            <td>{{book.Breleasedate}}</td>
+
+            <td>
+              <a href="/edit/{{ book.Bid }}" class="btn btn-primary"><span class = "glyphicon glyphicon-pencil">Edit</span></a>
+              <a href="/delete/{{ book.Bid }}" class="btn btn-danger">Delete</a>
+            </td>
+          </tr>
+        {% endfor %}  
+      {% endif %}
+    </tbody>
+  </table>
+  <br>
+  <br>
+  <center><a href="/book" class="btn btn-primary">Add New Record</a></center>
+</body>
+</html>

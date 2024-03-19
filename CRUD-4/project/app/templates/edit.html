@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit</title>
+  <link rel="stylesheet" href="{% static 'style.css' %}"/>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+  <form method="POST" class="post-form" action = '/update/{{event.Eid}}'>
+    {% csrf_token %}
+    <div class="container">
+      <br>
+      <h2>Employee Information: </h2><br>
+      <div class="from-group row">
+        <label class="col-sm-1 col-form-label"></label>
+        <div class="col-sm-4">
+          <h3>Update Details:</h3>
+        </div>
+      </div>
+
+      <div class="from-group row">
+        <label class="col-sm-2 col-form-label">Employee Id:</label>
+        <div class="col-sm-4">
+          <input type="hidden" name="Eid" id="id_Eid"  value="{{ event.Eid }}"/>
+        </div>
+      </div>
+
+      <div class="from-group row">
+        <label class="col-sm-2 col-form-label">Employee Name:</label>
+        <div class="col-sm-4">
+          <input type="text" name="Ename" id="id_Ename" required maxlength="100" value="{{ event.Ename }}"/>
+        </div>
+      </div>
+
+      <div class="from-group row">
+        <label class="col-sm-2 col-form-label">Employee Location:</label>
+        <div class="col-sm-4">
+          <input type="text" name="Elocation" id="id_Elocation" required maxlength="254" value="{{ event.Elocation }}"/>
+        </div>
+      </div>
+
+      <div class="from-group row">
+        <label class="col-sm-2 col-form-label">Employee Ticket Price:</label>
+        <div class="col-sm-4">
+          <input type="text" name="Eprice" id="id_Eprice" required maxlength="20" value="{{ event.Eprice }}"/>
+
+        </div>
+      </div>
+
+      <div class="from-group row">
+        <label class="col-sm-2 col-form-label">Employee Contact:</label>
+        <div class="col-sm-4">
+          <input type="number" name="Econtact" id="id_Econtact" required maxlength="20" value="{{ event.EContact }}"/>
+
+        </div>
+      </div>
+
+      <div class="form-group row">  
+        <label class="col-sm-3 col-form-label"></label>  
+        <div class="col-sm-4">  
+          <button type="submit" class="btn btn-success">Update</button>  
+        </div>  
+      </div>
+
+    </div>
+  </form>
+</body>
+</html>

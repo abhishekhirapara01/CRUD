@@ -1,0 +1,55 @@
+{% load mathfilters %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Show</title>
+  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+  <table class= "table table-striped table-bordered table-sm">
+    <thead class = "thead-dark">
+      <tr>
+        <th>Inventory Id</th>
+        <th>Inventory Name</th>
+        <th>Inventory Quantity</th>
+        <th>Inventory Price</th>
+        <th>Total Amount</th>
+        <th>Actions</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      {% if not inventorys %}
+      <tr align="center">
+        <td colspan="5"> No Record Found!!!   </td>
+      </tr> 
+      {% else %}
+        {% for inventory in inventorys %}
+          <tr>
+            <td>{{inventory.Iid}}</td>
+            <td>{{inventory.Iname}}</td>
+            <td>{{inventory.Iquantity}}</td>
+            <td>{{inventory.Iprice}}</td>
+            <td>{{inventory.Iprice|mul:inventory.Iquantity}}</td>
+            
+            <td>
+              <a href="/edit/{{ inventory.Iid }}" class="btn btn-primary"><span class = "glyphicon glyphicon-pencil">Edit</span></a>
+              <a href="/delete/{{ inventory.Iid }}" class="btn btn-danger">Delete</a>
+            </td>
+          </tr>
+        {% endfor %}  
+        <tr>
+          <td colspan="4">Grand Total:</td>
+          <td>{{total_price}}</td>
+        </tr>
+      {% endif %}
+    </tbody>
+  </table>
+  <br>
+  <br>
+  <center><a href="/inventory" class="btn btn-primary">Add New Record</a></center>
+</body>
+</html>
