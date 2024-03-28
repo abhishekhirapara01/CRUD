@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Information App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar bg-body-tertiary" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand">Student Management System</a>
+        </div>
+    </nav>
+    <table border="1px solid black" align="center">
+        <tr align="center">
+            <td>
+                <h2>Student Records </h2>
+            </td>
+        </tr>
+        <tr align="center">
+            <td>
+                <img src="data:image/png;base64,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" alt="Students Logo"/>
+            </td>
+        </tr>
+        <tr align="center">
+            <td>
+                <a href="/show" class="btn btn-primary">Show Records Here</a>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

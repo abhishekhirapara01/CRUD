@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Students Information System</title>
+</head>
+<body>
+    <nav class="navbar bg-body-tertiary" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand">Student Management System</a>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search Student Here" aria-label="Search" name="searchStudent">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+    <table class="table table-bordered table-striped table-sm table-dark">
+        <thead class="thead-dark">
+            <td>Student ID</td>
+            <td>Student Name</td>
+            <td>Student Rollno</td>
+            <td>Student Email</td>
+            <td>Student Subject</td>
+            <td>Actions</td>
+        </thead>
+        <tbody>
+            {% if not students %}
+                <tr>
+                    <td colspan="5">
+                        <center>
+                            <p>No Student Record Found!!!</p>
+                        </center>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                {% for student in students %}
+                    <td>{{ student.sid }}</td>
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.rollno }}</td>
+                    <td>{{ student.email }}</td>
+                    <td>{{ student.subject }}</td>
+                    <td>
+                        <a href="/edit/{{ student.sid }}" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-pencil">Edit</span>
+                        </a>&emsp;&emsp;&emsp;
+                        <a href="/delete/{{ student.sid }}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}               
+            {% endif %}
+        </tbody>
+    </table>
+    <center>
+        <a href="/stu" class="btn btn-dark">Add New Student</a>
+    </center>
+</body>
+</html>
