@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+      /* Remove the navbar's default rounded borders and increase the bottom margin */ 
+      .navbar {
+        margin-bottom: 50px;
+        border-radius: 0;
+      }
+     
+    </style>
+</head>
+<body>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+        </button>
+        <a class="navbar-brand" href="/">Logo</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="/">Home</a></li>
+          <li><a href="{% url 'show' %}">All Products</a></li>
+          <li><a href="{% url 'register' %}">Register</a></li>
+          <li><a href="{% url 'loginaccount' %}">Login</a></li>
+          <li><a href="{% url 'logoutaccount' %}">Logout</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+    <form method="post" class="post-form" action="/update/{{mobile.id}}">
+        {% csrf_token %}
+        <div class="container">
+            <h2>Mobile Store</h2>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label"></label>
+                <div class="col-sm-4">
+                    <h3>Enter Mobile Details : </h3>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Mobile Name: </label>
+                <div class="col-sm-4">
+                    <input type="text" name="Name" id="id_Name" value="{{mobile.Name}}"/>
+                </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label">Mobile Price: </label>
+              <div class="col-sm-4">
+                  <input type="number" name="Price" id="id_Price" value="{{mobile.Price}}"/>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label">Mobile Image: </label>
+              <div class="col-sm-4">
+                  <input type="file" name="img" id="id_img" value="{{mobile.img}}"/>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label">Mobile Description: </label>
+              <div class="col-sm-4">
+                  <input type="text" name="Description" id="id_Description" value="{{mobile.Description}}"/>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label">Mobile RAM: </label>
+              <div class="col-sm-4">
+                  <input type="text" name="RAM" id="id_RAM" value="{{mobile.RAM}}"/>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label">Mobile Camera: </label>
+              <div class="col-sm-4">
+                  <input type="text" name="Camera" id="id_Camera" value="{{mobile.Camera}}"/>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label">Mobile Display: </label>
+              <div class="col-sm-4">
+                  <input type="text" name="Display" id="id_Display" value="{{mobile.Display}}"/>
+            </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label">Mobile OS: </label>
+              <div class="col-sm-4">
+                  <input type="text" name="OS" id="id_OS" value="{{mobile.OS}}"/>
+              </div>
+            </div>
+         
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label"></label>
+                <div class="col-sm-4">
+                    <button type="submit" class="btn btn-success">Submit</button>
+                    <button type="reset" class="btn btn-info">Reset</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

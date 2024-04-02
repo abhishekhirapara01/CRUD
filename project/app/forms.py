@@ -1,5 +1,8 @@
 from typing import Any
 from django.contrib.auth.forms import UserCreationForm
+from django.forms import ModelForm
+from django import forms
+from .models import Mobile,Company
 
 class UserCreateForm(UserCreationForm):
   def __init__(self, *args, **kwargs) :
@@ -7,3 +10,9 @@ class UserCreateForm(UserCreationForm):
     for fieldname in ['username', 'password1', 'password2']:
       self.fields[fieldname].help_text = None
       self.fields[fieldname].widget.attrs.update({'class':'form-control'})
+
+
+class MobileForm(forms.ModelForm):
+   class Meta:
+       model=Mobile
+       fields="__all__"

@@ -1,35 +1,59 @@
 from django.shortcuts import render,redirect
-from .models import Mobile
+from .models import Mobile,Company
 from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.forms import AuthenticationForm
-from .forms import UserCreateForm
+from .forms import UserCreateForm,MobileForm
 from django.contrib.auth.models import User
 from django.db import IntegrityError
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
-def index(request):
-  return render(request,'index.html')
+def index(request): 
+  company = Company.objects.all()
+  return render(request,'index.html',{'company':company})
 
-def mobile(request):
+def mobile(request,id):
+  mobile = Mobile.objects.filter(id=id)
+  # if request.method  == 'POST':
+  #       form = MobileForm(request.POST)
+  #       try:
+  #           if form.is_valid():
+  #               form.save()
+  #               return redirect('show/')
+  #       except:
+  #           pass
+  # else:
+  #       form = MobileForm()
+    
+  return render(request, 'mobile.html',{'mobiles':mobile})
+  
+
+def show(request):
   mobiles = Mobile.objects.all()
-  return render(request,'mobile.html',{'mobiles':mobiles})
+  return render(request,'show.html',{'mobiles':mobiles})
 
-def show(request, name):
-  mobile = Mobile.objects.get(name=name)
-  return render(request,'show.html',{'mobile':mobile})
+def showid(request,id):
+  company = Company.objects.filter(id=id)
+  mobile = Mobile.objects.filter(id=id)
+  return render(request,'mobile.html',{'mobile':mobile,'company':company})
 
-def edit(request, name):
-  mobile = Mobile.objects.get(name=name)
+def edit(request,id):
+  mobile = Mobile.objects.get(id=id)
   return render(request,'edit.html',{'mobile':mobile})
 
-def update(request, name):
-  mobile = Mobile.objects.get(name=name)
-  return render(request,'edit.html',{'mobile':mobile})
+def update(request, id):
+  mobile=Mobile.objects.get(id=id)
+  form = MobileForm(request.POST,instance=mobile)      
+  if form.is_valid():
+      form.save()
+      return redirect('show/')
+  return render(request, 'edit.html',{'mobile':mobile})
 
-def delete(request, name):
-  mobile = Mobile.objects.get(name=name)
+
+def delete(request, id):
+  mobile = Mobile.objects.get(id=id)
   mobile.delete()
-  return redirect('/mobile')
+  return redirect('show/')
 
 def register(request):
   if request.method == 'GET':
@@ -53,7 +77,7 @@ def register(request):
                      'error':'Passwords do not match'
                     })
 
-def login(request):
+def loginaccount(request):
   if request.method == 'GET':
             return render(request, 'login.html',{'form':AuthenticationForm})
   else:
@@ -70,6 +94,7 @@ def login(request):
           login(request,user)
           return redirect('index')
 
-def logout(request):
+@login_required
+def logoutaccount(request):
   logout(request)
   return render(request,'index.html')
