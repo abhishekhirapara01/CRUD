@@ -15,7 +15,7 @@ class Mobile(models.Model):
   Camera=models.CharField(max_length=25)
   Display=models.CharField(max_length=10)
   OS=models.CharField(max_length=30)
-  company=models.ForeignKey(Company,on_delete=models.CASCADE)
+  company_id=models.ForeignKey(Company,on_delete=models.CASCADE)
 
   def  __str__(self):
       return self.Name
